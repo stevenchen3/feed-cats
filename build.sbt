@@ -24,7 +24,7 @@ lazy val commonSettings = Seq(
     "-Xlint:deprecation"
   ),
   javaOptions in Test ++= Seq("-Xms1024m", "-Xmx2048m", "-Dconfig.resource=test.conf"),
-  javaOptions in run ++= Seq("-Xms1024m", "-Xmx2048m", "-XX:+UseParallelGC", "-server"),
+  javaOptions in run ++= Seq("-Xms1024m", "-Xmx2048m", "-XX:+UseParallelGC", "-server")
 )
 
 lazy val root = Project(id = "feed-cats", base = file("."))
