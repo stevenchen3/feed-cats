@@ -31,7 +31,7 @@ lazy val commonSettings = Seq(
 
 lazy val root = Project(id = "feed-cats", base = file("."))
   .settings(commonSettings: _*)
-  .settings(fork in run := false)
+  .settings(fork in run := true)
   .settings(fork in Test := true)
   .settings(coverageEnabled := true) // change to `false` when comes to packaging and distribution
   .settings(doctestWithDependencies := false)
