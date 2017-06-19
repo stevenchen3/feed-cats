@@ -13,7 +13,8 @@ lazy val commonSettings = Seq(
     "-unchecked",
     "-Xlog-reflective-calls",
     "-Xlint",
-    "-Yrangepos"
+    "-Yrangepos",
+    "-language:higherKinds"
   ),
   javacOptions in Compile ++= Seq(
     "-source",
