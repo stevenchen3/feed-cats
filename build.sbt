@@ -14,7 +14,8 @@ lazy val commonSettings = Seq(
     "-Xlog-reflective-calls",
     "-Xlint",
     "-Yrangepos",
-    "-language:higherKinds"
+    "-language:higherKinds",
+    "-language:implicitConversions"
   ),
   javacOptions in Compile ++= Seq(
     "-source",
