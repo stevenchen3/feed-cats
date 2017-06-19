@@ -1,4 +1,4 @@
-package example.cats.fundamentals.herding.cats
+package example.herding.cats
 
 import cats._
 import cats.data._

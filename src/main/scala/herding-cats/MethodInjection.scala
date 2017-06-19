@@ -1,5 +1,4 @@
-package example.cats
-package herding.cats
+package example.herding.cats
 package methodinjection
 
 package ex1 {

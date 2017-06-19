@@ -1,4 +1,4 @@
-package example.cats.herding.cats
+package example.herding.cats
 
 package ex1 {
   object SumFunction extends App {

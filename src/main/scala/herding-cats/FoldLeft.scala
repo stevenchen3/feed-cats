@@ -1,5 +1,4 @@
-package example.cats
-package herding.cats
+package example.herding.cats
 package foldleft
 
 // Typeclasses examples
@@ -32,7 +31,7 @@ package ex2 {
   }
 
   object FoldLeftApp extends App {
-    import example.cats.herding.cats.ex3.Monoid
+    import example.herding.cats.ex3.Monoid
     // Both Int and List are now pulled out of `sum`
     def sum[M[_]: FoldLeft, A: Monoid](xs: M[A]): A = {
       val m = implicitly[Monoid[A]]
@@ -40,7 +39,7 @@ package ex2 {
       fl.foldLeft(xs, m.mzero, m.mappend)
     }
 
-    import example.cats.herding.cats.ex6.Monoid._
+    import example.herding.cats.ex6.Monoid._
     val xs = List(1, 2, 3, 4)
     println(s"sum($xs)=${sum(xs)}")
 
