@@ -2,7 +2,11 @@ import sbt._
 
 object Dependencies {
   // typelevel Cats library dependencies, including all modules
-  val catsDeps = Seq("org.typelevel" %% "cats" % "0.9.0")
+  val catsVersion = "0.9.0"
+  val catsDeps = Seq(
+    "org.typelevel" %% "cats",
+    "org.typelevel" %% "cats-laws"
+  ).map(_ % catsVersion)
 
   // Scalatest library dependencies
   val scalatestDeps = Seq(
@@ -28,4 +32,6 @@ object Dependencies {
     "org.specs2" %% "specs2-form",
     "org.specs2" %% "specs2-junit"
   ).map(_ % specs2Version).map(_ % "test")
+
+  val resetAllAttrs = Seq("org.scalamacros" %% "resetallattrs" % "1.0.0")
 }
