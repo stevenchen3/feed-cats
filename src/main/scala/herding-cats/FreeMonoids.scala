@@ -36,11 +36,18 @@ import cats.implicits._
  *
  * An arrow f satisfying the property ‘for any pair of arrows x1: T ⇒ A and x2: T ⇒
  * A, if f ∘ x1 = f ∘ x2 then x1 = x2‘, it is said to be injective for arrows from T.
+ *
+ * ⇒ From Linear Algebra point of view
+ *
+ * There're value `x1` and `x2` from domain `T`, and a function `f` maps values from domain `T` to
+ * domain `A`, if `f ∘ x1 = f ∘ x2` then `x1` = `x2`A, arrow from `T` is injective.
  */
 object FreeMonoids {
-  // In this example, `M[X]` is a set of characters, which is `String`
+  // In this example, `M[X]` is a set of characters, which is `String` (M[X] = String)
+  // and `N = Int`
   def i(x: Char): Set[String] = Set(x.toString)
   def f(x: Char): Set[Int] = Set(x.toInt) // example only
+  // `f_hom: String ⇒ Int`
   val f_hom: PartialFunction[String, Int] = { case mx: String if mx.size == 1 ⇒ mx.charAt(0).toInt }
   def f_hom_set(smx: Set[String]): Set[Int] = smx map {f_hom}
   val g = (f_hom_set _) compose (i _)
