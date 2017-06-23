@@ -5,9 +5,9 @@ import cats.data._
 import cats.implicits._
 
 /**
-  * Given some type constructor C[_] and two types A and B, we want to apply functions of type C[A]⇒C[B] .
-  * Unfortunately we have only functions of types A⇒B,  A⇒C[B] and C[A⇒B] at hand, so we need
-  * adequate transformations for them:
+  * Given some type constructor C[_] and two types A and B, we want to apply functions of
+  * type C[A]⇒C[B]. Unfortunately we have only functions of types A⇒B,  A⇒C[B] and C[A⇒B] at
+  * hand, so we need adequate transformations for them:
   *
   * a) (A⇒B)    ⇒ (C[A]⇒C[B])
   * b) (A⇒C[B]) ⇒ (C[A]⇒C[B])
@@ -16,12 +16,12 @@ import cats.implicits._
   * All these are transformations of some given functions into the function type we need, and all
   * these transformations even have names.
   *
-  * a) (A⇒B)    ⇒ (C[A]⇒C[B])   | Functor
-  * b) (A⇒C[B]) ⇒ (C[A]⇒C[B])   | Monad
-  * c) (C[A⇒B]) ⇒ (C[A]⇒C[B])   | Applicative
+  * a) (A⇒B)    ⇒ (C[A]⇒C[B])  | Functor
+  * b) (A⇒C[B]) ⇒ (C[A]⇒C[B])  | Monad
+  * c) (C[A⇒B]) ⇒ (C[A]⇒C[B])  | Applicative
   *
   */
-object FunctorExample extends App {
+object FunctorsExample extends App {
   val x = Functor[List].map(List(1, 2, 3, 4)) { _ + 1 }
   println(s"x=$x")
 
