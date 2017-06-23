@@ -37,7 +37,7 @@ import cats.implicits._
  * An arrow f satisfying the property ‘for any pair of arrows x1: T ⇒ A and x2: T ⇒
  * A, if f ∘ x1 = f ∘ x2 then x1 = x2‘, it is said to be injective for arrows from T.
  *
- * ⇒ From Linear Algebra point of view
+ * ⇒ From Linear Algebra point of view (one-to-one mapping)
  *
  * There're value `x1` and `x2` from domain `T`, and a function `f` maps values from domain `T` to
  * domain `A`, if `f ∘ x1 = f ∘ x2` then `x1` = `x2`A, arrow from `T` is injective.
