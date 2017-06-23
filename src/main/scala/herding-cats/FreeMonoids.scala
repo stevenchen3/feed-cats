@@ -43,12 +43,14 @@ import cats.implicits._
  * domain `A`, if `f ∘ x1 = f ∘ x2` then `x1` = `x2`A, arrow from `T` is injective.
  */
 object FreeMonoids {
-  // In this example, `M[X]` is a set of characters, which is `String` (M[X] = String)
-  // and `N = Int`
-  def i(x: Char): Set[String] = Set(x.toString)
-  def f(x: Char): Set[Int] = Set(x.toInt) // example only
+  // In this example
+  // `M[X]` is a set of characters, which is `String` (M[X] = String) and `N = Int`
+  type MX = String
+  type N  = Int
+  def i(x: Char): Set[MX] = Set(x.toString)
+  def f(x: Char): Set[N] = Set(x.toInt) // example only
   // `f_hom: String ⇒ Int`
-  val f_hom: PartialFunction[String, Int] = { case mx: String if mx.size == 1 ⇒ mx.charAt(0).toInt }
-  def f_hom_set(smx: Set[String]): Set[Int] = smx map {f_hom}
+  val f_hom: PartialFunction[MX, N] = { case mx: MX if mx.size == 1 ⇒ mx.charAt(0).toInt }
+  def f_hom_set(smx: Set[MX]): Set[N] = smx map {f_hom}
   val g = (f_hom_set _) compose (i _)
 }
