@@ -1,7 +1,7 @@
 # Feed `cats`
 
 Cats are cute! But it's irrelevant to what I mean in this repository, which is about learning
-typelevel's [cats](https://github.com/typelevel/cats) library.
+Typelevel's [cats](https://github.com/typelevel/cats) library.
 
 # Resources
 
