@@ -2,6 +2,9 @@ package example.fsis
 
 import simulacrum._
 
+//
+// Go through Functional Structures in Scala tutorials by Michael Pilquist
+//
 /*
  *  Typeclass abstracts over type constructor that can define a `map` operation
  *  and comply with two laws: (1) identity law and (2) composition law.
