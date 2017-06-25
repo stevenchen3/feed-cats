@@ -46,6 +46,7 @@ lazy val root = Project(id = "feed-cats", base = file("."))
   .settings(libraryDependencies ++= specs2Deps)
   .settings(libraryDependencies ++= Seq(macroParaside, kindProjector))
   .settings(libraryDependencies ++= resetAllAttrs)
+  .settings(libraryDependencies ++= simulacrumDeps)
 
 lazy val latestScalafmt = "1.0.0-RC1"
 commands += Command.args("scalafmt", "Run scalafmt cli.") {

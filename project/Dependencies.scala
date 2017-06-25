@@ -34,4 +34,8 @@ object Dependencies {
   ).map(_ % specs2Version).map(_ % "test")
 
   val resetAllAttrs = Seq("org.scalamacros" %% "resetallattrs" % "1.0.0")
+
+  val simulacrumDeps = Seq(
+    "com.github.mpilquist" %% "simulacrum" % "0.10.0"
+  )
 }
