@@ -1,4 +1,4 @@
-package example.cats
+package example.fsis
 
 import simulacrum._
 
@@ -24,13 +24,6 @@ import simulacrum._
     }
 }
 
-trait FunctorLaws {
-  def identity[F[_], A](fa: F[A])(implicit F: Functor[F]) = F.map(fa)(a ⇒ a) == fa
-
-  def composition[F[_], A, B, C](fa: F[A], f: A ⇒ B, g: B ⇒ C)(implicit F: Functor[F]) =
-    F.map(F.map(fa)(f))(g) == F.map(fa)(f andThen g)
-}
-
 object Functor {
   implicit val listFunctor: Functor[List] = new Functor[List] {
     def map[A, B](fa: List[A])(f: A ⇒ B): List[B] = fa.map(f)
@@ -45,6 +38,25 @@ object Functor {
   // We still get a function takes A as input but changes the type of output
   implicit def function1Functor[X]: Functor[X ⇒ ?] = new Functor[X ⇒ ?] {
     def map[A, B](fa: X ⇒ A)(fb: A ⇒ B): X ⇒ B = fa andThen fb
+  }
+}
+
+trait FunctorLaws[F[_]] {
+  import Functor.ops._
+  import IsEq._
+
+  // Compiler complains that `F[_]` shadows `F[_]` in `FunctorLaws`
+  //def identity[F[_], A](fa: F[A])(implicit F: Functor[F]) = F.map(fa)(a ⇒ a) =?= fa
+  def identity[A](fa: F[A])(implicit F: Functor[F]) = F.map(fa)(a ⇒ a) =?= fa
+
+  def composition[A, B, C](fa: F[A], f: A ⇒ B, g: B ⇒ C)(implicit F: Functor[F]) =
+    F.map(F.map(fa)(f))(g) =?= F.map(fa)(f andThen g)
+}
+
+
+object FunctorLaws {
+  def apply[F[_]](implicit F0: Functor[F]): FunctorLaws[F] = new FunctorLaws[F] {
+    def F = F0
   }
 }
 
