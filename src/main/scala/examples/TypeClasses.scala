@@ -60,7 +60,7 @@ object Demo { // needed for tut, irrelevant to demonstration
   }
 }
 
-object TypeClasses extends App {
+object TypeClassesApp extends App {
   // collapse a list, sum a list of integers, concate a list of strings, and union a list of sets
   def sumInts(list: List[Int]): Int = list.foldRight(0)(_ + _)
 
