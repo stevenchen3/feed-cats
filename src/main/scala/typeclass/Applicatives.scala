@@ -88,6 +88,13 @@ object Applicative {
         f <- ff
       } yield f(a)
   }
+
+  implicit val streamApplicative: Applicative[Stream] = new Applicative[Stream] {
+    def pure[A](a: A): Stream[A] = Stream(a)
+
+    def apply[A, B](fa: Stream[A])(ff: Stream[A ⇒ B]): Stream[B] =
+      (fa zip ff) map{ case (a, f) ⇒ f(a)}
+  }
 }
 
 // From https://github.com/prurph/fsis-scala/blob/master/src/main/scala/Applicative.scala
