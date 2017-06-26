@@ -6,15 +6,17 @@ import simulacrum._
 // Go through Functional Structures in Scala tutorials by Michael Pilquist
 //
 // `Applicative` is actually a specific implementation of `Functor`
+// `Applicative` expects a type parameter of some type constructor, not proper type.
 @typeclass trait Applicative[F[_]] extends Functor[F] { self ⇒
   // Example: take 1 and lift into List[Int](1)
+  //
   // Called pure because it takes a raw, "pure" value that exists outside of
   // "effect system" and lifts into effect system. These are not side-effects,
   // rather that, for example, Option models the "effect" of having or not
   // having a value. List models the "effect" of having multiple values.
   def pure[A](a: A): F[A]
 
-  // Takes two proper types, A and B, and an F[A], but instead of taking A => B,
+  // Takes two proper types, A and B, and an F[A], but instead of taking A ⇒ B,
   // as with Functor's map, takes a type that exists _within_ the type
   // constructor. Applicative operates inside the "container", Functor "unwraps"
   // and "rewraps".
@@ -29,7 +31,7 @@ import simulacrum._
   override def map[A, B](fa: F[A])(f: A ⇒ B): F[B] = apply(fa)(pure(f))
 
   def map2[A, B, Z](fa: F[A], fb: F[B])(f: (A, B) ⇒ Z): F[Z] =
-    // by using `apply` to `fa`, we expect a function `F[A ⇒ ZJ]`
+    // by using `apply` to `fa`, we expect a function `F[A ⇒ Z]`
     // so that we can have `F[Z]` as the result
     // Now, we have `fb` and `f: (A, B) ⇒ Z`. If we `map` over `fb`
     // and partially apply function `f`: map(fb)(b ⇒ f(_, b)),
@@ -56,9 +58,9 @@ import simulacrum._
       def pure[A](a: A): F[G[A]] = self.pure(G.pure(a))
 
       def apply[A, B](fga: F[G[A]])(ff: F[G[A ⇒ B]]): F[G[B]] = {
-        // We have F[G[A]], so if we had a F[G[A] => G[B]], we could simply use
-        // F's apply with that function. Thus we unpack ff to give us a function
-        // gab: G[A => B] and call G.flip on it to yield G[A] => G[B]
+        // We have F[G[A]], so if we had a F[G[A] ⇒ G[B]], we could simply use
+        // F's apply with that function. Thus we unpack `ff` to give us a function
+        // gab: G[A ⇒ B] and call G.flip on it to yield G[A] ⇒ G[B]
         val x: F[G[A] ⇒ G[B]] = self.map(ff)(gab ⇒ G.flip(gab))
         self.apply(fga)(x)
       }
@@ -97,14 +99,14 @@ trait ApplicativeLaws[F[_]] {
 
   def applicativeIdentity[A](fa: F[A]) = fa.apply(F.pure((a: A) ⇒ a)) =?= fa
 
-  // Result of lifting A and applying lifted A => B must match the result of
-  // directly applying the A => B to A and _then_ lifting it into context.
+  // Result of lifting A and applying lifted A ⇒ B must match the result of
+  // directly applying the A ⇒ B to A and _then_ lifting it into context.
   // Function application "distributes over" apply and pure.
   def applicativeHomomorphism[A, B](a: A, f: A ⇒ B) = F.pure(a).apply(F.pure(f)) =?= F.pure(f(a))
 
   // Lifting A and applying ff to it gives the same F[B] as lifting a function
-  // A => B that returns f(a) and applying it to ff. In the second case we
-  // lift an (A => B) => B, then apply it to F[A => B] to give F[B].
+  // A ⇒ B that returns f(a) and applying it to ff. In the second case we
+  // lift an (A ⇒ B) ⇒ B, then apply it to F[A ⇒ B] to give F[B].
   def applicativeInterchage[A, B](a: A, ff: F[A ⇒ B]) =
     F.pure(a).apply(ff) =?= ff.apply(F.pure((f: A ⇒ B) ⇒ f(a)))
 
