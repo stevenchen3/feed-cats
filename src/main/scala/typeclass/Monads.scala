@@ -58,3 +58,12 @@ object MonadLaws {
     def F = F0
   }
 }
+
+object MonadApp extends App {
+  import Monad._
+  val res1 = listMonad.flatMap(List(1, 2, 3))(x ⇒ List.fill(x)(x))
+  println(s"listMonad.flatMap(List(1, 2, 3))(x ⇒ List.fill(x)(x)) = $res1")
+
+  val res2 = optionMonad.flatMap(Option(1))(x ⇒ if (x > 0) Some(x) else None)
+  println(s"optionMonad.flatMap(Option(1))(x ⇒ if (x > 0) Some(x) else None) = ${res2}")
+}
