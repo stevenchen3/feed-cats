@@ -118,6 +118,11 @@ trait ApplicativeLaws[F[_]] {
   def applicativeMap[A, B](fa: F[A], f: A ⇒ B) = fa.map(f) =?= fa.apply(F.pure(f))
 }
 
+object ApplicativeLaws {
+  def apply[F[_]](implicit F0: Applicative[F]): ApplicativeLaws[F] = new ApplicativeLaws[F] {
+    def F = F0
+  }
+}
 object ApplicativeApp extends App {
   import Applicative._
   val optApp = implicitly[Applicative[Option]]
