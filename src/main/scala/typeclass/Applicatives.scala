@@ -5,7 +5,7 @@ import simulacrum._
 //
 // Go through Functional Structures in Scala tutorials by Michael Pilquist
 //
-// `Applicative` is actually a specific implementation of `Functor`
+// `Applicative` is actually a subtype of `Functor`
 // `Applicative` expects a type parameter of some type constructor, not proper type.
 @typeclass trait Applicative[F[_]] extends Functor[F] { self ⇒
   // Example: take 1 and lift into List[Int](1)
@@ -130,6 +130,7 @@ object ApplicativeLaws {
     def F = F0
   }
 }
+
 object ApplicativeApp extends App {
   import Applicative._
   val optApp = implicitly[Applicative[Option]]
