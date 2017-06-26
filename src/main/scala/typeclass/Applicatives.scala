@@ -1,4 +1,4 @@
-package example.fsis
+package example.typeclass
 
 import simulacrum._
 
@@ -97,10 +97,13 @@ trait ApplicativeLaws[F[_]] {
 
   implicit def F: Applicative[F]
 
+  // Given `fa`, we have the same value `fa` after apply the identity function.
+  // fa.apply(x): F[A], we expect `x: F[A ⇒ A]`
+  // `A ⇒ A` if not in the effect system, we need to lift it up by applying `pure`
   def applicativeIdentity[A](fa: F[A]) = fa.apply(F.pure((a: A) ⇒ a)) =?= fa
 
-  // Result of lifting A and applying lifted A ⇒ B must match the result of
-  // directly applying the A ⇒ B to A and _then_ lifting it into context.
+  // Result of lifting A and applying lifted `f: A ⇒ B` must match the result of
+  // directly applying the `f: A ⇒ B` to A and _then_ lifting it into context.
   // Function application "distributes over" apply and pure.
   def applicativeHomomorphism[A, B](a: A, f: A ⇒ B) = F.pure(a).apply(F.pure(f)) =?= F.pure(f(a))
 

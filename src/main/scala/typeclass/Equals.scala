@@ -1,4 +1,4 @@
-package example.fsis
+package example.typeclass
 
 // This code is from https://github.com/prurph/fsis-scala
 trait Equal[A] {

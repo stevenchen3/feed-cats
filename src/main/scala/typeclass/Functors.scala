@@ -1,4 +1,4 @@
-package example.fsis
+package example.typeclass
 
 import simulacrum._
 
