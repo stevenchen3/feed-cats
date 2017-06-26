@@ -25,6 +25,19 @@ import simulacrum._
     flatMap(ffa)(identity) // equivalent to: flatMap(ffa)(fa ⇒ fa)
 }
 
+object Monad {
+  implicit val listMonad: Monad[List] = new Monad[List] {
+    def pure[A](a: A): List[A] = List(a)
+
+    def flatMap[A, B](fa: List[A])(f: A ⇒ List[B]): List[B] = fa.flatMap(f)
+  }
+
+  implicit val optionMonad: Monad[Option] = new Monad[Option] {
+    def pure[A](a: A): Option[A] = Option(a)
+
+    def flatMap[A, B](fa: Option[A])(f: A ⇒ Option[B]): Option[B] = fa.flatMap(f)
+  }
+}
 
 trait MonadLaws[F[_]] {
   import Monad.ops._
