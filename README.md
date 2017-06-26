@@ -1,4 +1,4 @@
-# Feed `cats`
+# Feed `Cats`
 
 [![CircleCI](https://circleci.com/gh/stevenchen3/feed-cats.svg?style=svg)](https://circleci.com/gh/stevenchen3/feed-cats)
 
