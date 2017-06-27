@@ -13,6 +13,22 @@ import cats.Monoid
  *
  */
 
+package ex1 {
+  import cats.Semigroup
+  final case class NonEmptyList[A](head: A, tail: List[A]) {
+    def ++ (other: NonEmptyList[A]): NonEmptyList[A] = NonEmptyList(head, tail ++ other.toList)
+
+    def toList: List[A] = head :: tail
+  }
+
+  object NonEmptyList {
+    implicit def nonEmptyListSemigroup[A]: Semigroup[NonEmptyList[A]] =
+      new Semigroup[NonEmptyList[A]] {
+        def combine(x: NonEmptyList[A], y: NonEmptyList[A]): NonEmptyList[A] = x ++ y
+      }
+  }
+}
+
 object MonoidApp extends App {
 
   implicit val intAdditionMonoid: Monoid[Int] = new Monoid[Int] {
@@ -41,4 +57,30 @@ object MonoidApp extends App {
 
   val res6 = combineAll(List(Set(1, 2), Set(2, 3, 4, 5)))
   println(s"combineAll(list of set) = ${res6}")
+
+  import cats.Semigroup
+  import cats.syntax.semigroup._
+  // Monoid for Option: for any Semigroup[A], there is a Monoid[Option[A]]
+  implicit def optionMonoid[A: Semigroup]: Monoid[Option[A]] = new Monoid[Option[A]] {
+    def empty: Option[A] = None
+
+    def combine(x: Option[A], y: Option[A]): Option[A] = x match {
+      case None ⇒ y
+      case Some(xv) ⇒ y match {
+        case None ⇒ x
+        case Some(yv) ⇒ Some(xv |+| yv)
+      }
+    }
+  }
+
+  import cats.Monoid
+  import cats.data.NonEmptyList
+  import cats.instances.option._
+
+  val list = List(NonEmptyList(1, List(2, 3)), NonEmptyList(4, List(5, 6)))
+  val lifted = list.map(nel => Option(nel))
+
+  // This lifting and combining of Semigroups into Option is provided by Cats as
+  // Semigroup.combineAllOption.
+  println(s"Monoid.combineAll(lifted) = ${Monoid.combineAll(lifted)}")
 }
