@@ -1,4 +1,4 @@
-package example.cats
+package example.cats.semigroup
 
 import cats.Semigroup
 import cats.implicits._

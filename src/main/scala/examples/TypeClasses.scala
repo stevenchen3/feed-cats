@@ -1,4 +1,4 @@
-package example.cats
+package example.cats.typeclass
 
 /*
  *
