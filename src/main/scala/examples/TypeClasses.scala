@@ -81,7 +81,7 @@ object TypeClassesApp extends App {
   val xs = List(1, 2, 3, 4)
   assert(sumInts(xs) == combineAll(xs, intAdditionMonoid))
 
-  // Subtyping
+  // Subtyping implementation
   def combineAll2[A <: Monoid[A]](list: List[A]): A = ???
 
   def combineAll3[A](list: List[A])(implicit A: Monoid[A]): A = list.foldRight(A.empty)(A.combine)

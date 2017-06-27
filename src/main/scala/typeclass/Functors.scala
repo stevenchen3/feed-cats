@@ -13,7 +13,9 @@ import simulacrum._
 @typeclass trait Functor[F[_]] { self ⇒
   def map[A, B](fa: F[A])(f: A ⇒ B): F[B]
 
-  // Some derived operations for functor
+  //
+  // Some derived operations for `Functor`
+  //
   def lift[A, B](f: A ⇒ B): F[A] ⇒ F[B] = fa ⇒ map(fa)(f)
 
   def as[A, B](fa: F[A], b: ⇒ B): F[B] = map(fa)(_ ⇒ b)
@@ -55,7 +57,6 @@ trait FunctorLaws[F[_]] {
   def composition[A, B, C](fa: F[A], f: A ⇒ B, g: B ⇒ C)(implicit F: Functor[F]) =
     F.map(F.map(fa)(f))(g) =?= F.map(fa)(f andThen g)
 }
-
 
 object FunctorLaws {
   def apply[F[_]](implicit F0: Functor[F]): FunctorLaws[F] = new FunctorLaws[F] {
