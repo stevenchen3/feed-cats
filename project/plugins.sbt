@@ -10,3 +10,5 @@ addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.0")
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.8.0")
 // Add dependency tree graph plugin
 addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.8.2")
+// Add `tut` documentation plugin
+addSbtPlugin("org.tpolecat" % "tut-plugin" % "0.5.2")

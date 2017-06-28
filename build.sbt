@@ -30,12 +30,18 @@ lazy val commonSettings = Seq(
   javaOptions in run ++= Seq("-Xms1024m", "-Xmx2048m", "-XX:+UseParallelGC", "-server")
 )
 
+lazy val tutSettings = Seq(
+  tutSourceDirectory := (baseDirectory( _ / "docs/src/main/tut"  )).value
+)
+
 resolvers += Resolver.sonatypeRepo("releases")
 val macroParaside = compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 val kindProjector = compilerPlugin("org.spire-math" % "kind-projector" % "0.9.4" cross CrossVersion.binary)
 
 lazy val root = Project(id = "feed-cats", base = file("."))
+  .enablePlugins(TutPlugin)
   .settings(commonSettings: _*)
+  .settings(tutSettings)
   .settings(fork in run := true)
   .settings(fork in Test := true)
   .settings(coverageEnabled := true) // change to `false` when comes to packaging and distribution
