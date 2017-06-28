@@ -13,7 +13,7 @@ object FunctorApp extends App {
   // to call another function which requires a Functor and we want to use the composed Functor, we
   // would have to explicitly pass in the composed instance during the function call or create a
   // local implicit.
-  def needsFunctor[F[_]: Functor, A](fa: F[A]): F[Unit] = Functor[F].map(fa)(_ => ())
+  def needsFunctor[F[_]: Functor, A](fa: F[A]): F[Unit] = Functor[F].map(fa)(_ ⇒ ())
 
   def foo: List[Option[Unit]] = {
     val listOptionFunctor = Functor[List].compose[Option]
