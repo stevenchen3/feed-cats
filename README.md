@@ -1,9 +1,9 @@
-# Feed `Cats`
+# Play with `Cats`
 
 [![CircleCI](https://circleci.com/gh/stevenchen3/feed-cats.svg?style=svg)](https://circleci.com/gh/stevenchen3/feed-cats)
 
-Cats are cute! But it's irrelevant to what I mean in this repository, which is about learning
-Typelevel's [cats](https://github.com/typelevel/cats) library.
+[Ragdoll](https://en.wikipedia.org/wiki/Ragdoll) is one of the famous cat breeds in the world. I
+believe learning [Cats](https://github.com/typelevel/cats) is as much fun as playing with Ragdoll cats.
 
 # Resources
 
