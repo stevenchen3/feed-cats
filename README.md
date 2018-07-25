@@ -7,8 +7,7 @@ believe learning [Cats](https://github.com/typelevel/cats) is as much fun as pla
 cats. Like below [Playground Explorer Rex](https://www.instagram.com/imrextheragdoll/).
 
 Inline-style:
-![alt text](https://github.com/stevenchen3/ragdoll/bob/master/images/rex-and-merlion.jpg "Rex with
-Merlion")
+![alt text](https://github.com/stevenchen3/ragdoll/blob/master/images/rex-and-merlion.jpg "Rex with Merlion")
 
 
 # Resources
