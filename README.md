@@ -4,7 +4,7 @@
 
 [Ragdoll](https://en.wikipedia.org/wiki/Ragdoll) is one of the famous cat breeds in the world. I
 believe learning [Cats](https://github.com/typelevel/cats) is as much fun as playing with Ragdoll
-cats. Like below [Playground Explorer Rex](https://www.instagram.com/imrextheragdoll/).
+cats, like below [Playground Explorer Rex](https://www.instagram.com/imrextheragdoll/).
 
 ![alt text](https://github.com/stevenchen3/ragdoll/blob/master/images/rex-and-merlion.jpg "Rex with Merlion")
 
