@@ -3,7 +3,13 @@
 [![CircleCI](https://circleci.com/gh/stevenchen3/feed-cats.svg?style=svg)](https://circleci.com/gh/stevenchen3/feed-cats)
 
 [Ragdoll](https://en.wikipedia.org/wiki/Ragdoll) is one of the famous cat breeds in the world. I
-believe learning [Cats](https://github.com/typelevel/cats) is as much fun as playing with Ragdoll cats.
+believe learning [Cats](https://github.com/typelevel/cats) is as much fun as playing with Ragdoll
+cats. Like below [Playground Explorer Rex](https://www.instagram.com/imrextheragdoll/).
+
+Inline-style:
+![alt text](https://github.com/stevenchen3/ragdoll/bob/master/images/rex-and-merlion.jpg "Rex with
+Merlion")
+
 
 # Resources
 
