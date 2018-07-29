@@ -1,7 +1,7 @@
 import Dependencies._
 
 lazy val commonSettings = Seq(
-  name := "feed-cats",
+  name := "ragdoll",
   version := "0.9.0",
   scalaVersion := "2.11.8",
   scalacOptions in Compile ++= Seq(
@@ -26,8 +26,8 @@ lazy val commonSettings = Seq(
     "-Xlint:unchecked",
     "-Xlint:deprecation"
   ),
-  javaOptions in Test ++= Seq("-Xms1024m", "-Xmx2048m", "-Dconfig.resource=test.conf"),
-  javaOptions in run ++= Seq("-Xms1024m", "-Xmx2048m", "-XX:+UseParallelGC", "-server")
+  javaOptions in Test ++= Seq("-Xms256m", "-Xmx2g", "-Dconfig.resource=test.conf"),
+  javaOptions in run  ++= Seq("-Xms256m", "-Xmx2g", "-XX:+UseParallelGC", "-server")
 )
 
 lazy val tutSettings = Seq(
@@ -38,7 +38,7 @@ resolvers += Resolver.sonatypeRepo("releases")
 val macroParaside = compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 val kindProjector = compilerPlugin("org.spire-math" % "kind-projector" % "0.9.4" cross CrossVersion.binary)
 
-lazy val root = Project(id = "feed-cats", base = file("."))
+lazy val root = Project(id = "ragdoll", base = file("."))
   .enablePlugins(TutPlugin)
   .settings(commonSettings: _*)
   .settings(tutSettings)
