@@ -1,6 +1,6 @@
 # Play with `Cats`
 
-[![CircleCI](https://circleci.com/gh/stevenchen3/feed-cats.svg?style=svg)](https://circleci.com/gh/stevenchen3/feed-cats)
+[![CircleCI](https://circleci.com/gh/stevenchen3/ragdoll.svg?style=svg)](https://circleci.com/gh/stevenchen3/ragdoll)
 
 [Ragdoll](https://en.wikipedia.org/wiki/Ragdoll) is one of the famous cat breeds in the world. I
 believe learning [Cats](https://github.com/typelevel/cats) is as much fun as playing with Ragdoll
